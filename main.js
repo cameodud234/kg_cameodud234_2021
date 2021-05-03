@@ -1,8 +1,8 @@
-let test1 = [30,-4,5,7,909];
+let test1 = [15, 30,-4,5,7,909,888,505,-1,1,300];
 
 // let test2 = [-3,-4,5,7,9];
 
-let numsDict = {
+const numsDict = {
     0: "Zero",
     1: "One",
     2: "Two",
@@ -15,26 +15,39 @@ let numsDict = {
     9: "Nine"
 };
 
-let retString = "";
 
-for(elem in test1){
-    // we will assume a negative integer entails 
-    // the naming convention of positive integers.
-    let tmpNum = Math.abs(test1[elem]);
-    let tmpValStr = String(tmpNum);
-    //console.log(tmpValStr);
-    for(i in tmpValStr){
-        if(numsDict[tmpValStr[i]] !== null){
-            retString += numsDict[tmpValStr[i]];
+// returns a string
+function numsIn_strOut(numsArr){
+
+    let retString = "";
+
+    for(elem in numsArr){
+
+        // We will assume a negative integer inherits 
+        // the naming convention of positive integers.
+        let tmpNum = Math.abs(numsArr[elem]);
+        let tmpValStr = String(tmpNum);
+
+        for(i in tmpValStr){
+            if(numsDict[tmpValStr[i]] !== undefined){
+                retString += numsDict[tmpValStr[i]];
+            }
+            else{ throw Error("Error parsing numerical value..."); }
         }
-        else{ throw Error("Error parsing numerical value..."); }
+
+        retString += ",";
+
     }
-    retString += ",";
+
+    // this gets rid of the trailing ','
+    if(retString[retString.length - 1] === ","){ 
+        retString = retString.slice(0, retString.length - 1); 
+    }
+
+    return retString;
+
 }
 
-if(retString[retString.length - 1] === ","){ 
-    retString = retString.slice(0, retString.length - 1); 
-}
 
-
-console.log(retString);
+console.log(test1)
+console.log(numsIn_strOut(test1));
