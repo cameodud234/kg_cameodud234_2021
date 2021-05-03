@@ -14,3 +14,27 @@ let numsDict = {
     8: "Eight",
     9: "Nine"
 };
+
+let retString = "";
+
+for(elem in test1){
+    // we will assume a negative integer entails 
+    // the naming convention of positive integers.
+    let tmpNum = Math.abs(test1[elem]);
+    let tmpValStr = String(tmpNum);
+    //console.log(tmpValStr);
+    for(i in tmpValStr){
+        if(numsDict[tmpValStr[i]] !== null){
+            retString += numsDict[tmpValStr[i]];
+        }
+        else{ throw Error("Error parsing numerical value..."); }
+    }
+    retString += ",";
+}
+
+if(retString[retString.length - 1] === ","){ 
+    retString = retString.slice(0, retString.length - 1); 
+}
+
+
+console.log(retString);
