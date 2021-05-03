@@ -1,7 +1,3 @@
-let test1 = [15, 30,-4,5,7,909,888,505,-1,1,300];
-
-// let test2 = [-3,-4,5,7,9];
-
 const numsDict = {
     0: "Zero",
     1: "One",
@@ -49,5 +45,15 @@ function numsIn_strOut(numsArr){
 }
 
 
-console.log(test1)
-console.log(numsIn_strOut(test1));
+
+const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+readline.question("", nums => {
+    let myNumArr = nums.split(" ");
+    let vals = numsIn_strOut(myNumArr);
+    console.log(`${vals}`);
+    readline.close();
+});
